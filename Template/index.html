@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Language Translation</title>
+    <style>
+        /* General Reset and Box-Sizing */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Style */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #66a6ff, #89f7fe); /* Sky Blue Gradient */
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            padding: 20px;
+            position: relative; /* Allows for positioning the dropdown */
+        }
+
+        /* Language Dropdown Style */
+        #language-select {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #87cefa;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+        }
+
+        /* Container for video and text */
+        #video-container {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            width: 80%;
+            max-width: 800px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px; /* Space from the dropdown */
+        }
+
+        /* Heading Style */
+        h1 {
+            font-family: "Algerian", sans-serif;
+            font-size: 48px;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Video Display */
+        img {
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            height: auto;
+            max-width: 800px;
+            transition: transform 0.3s ease;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Subtitle Style */
+        #prediction {
+            font-size: 32px;
+            color: #fff;
+            font-weight: bold;
+            margin-top: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            #language-select {
+                font-size: 14px;
+                top: 10px;
+                right: 10px;
+            }
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Sign Language Recognition with Translation</h1>
+
+    <!-- Language Selection Dropdown -->
+    <form method="POST">
+        <label for="language">Select Language for Translation:</label>
+        <select name="language" id="language">
+            <option value="en" {% if language == 'en' %}selected{% endif %}>English</option>
+            <option value="es" {% if language == 'es' %}selected{% endif %}>Spanish</option>
+            <option value="fr" {% if language == 'fr' %}selected{% endif %}>French</option>
+            <option value="de" {% if language == 'de' %}selected{% endif %}>German</option>
+            <option value="it" {% if language == 'it' %}selected{% endif %}>Italian</option>
+            <option value="pt" {% if language == 'pt' %}selected{% endif %}>Portuguese</option>
+            <!-- Add more languages as needed -->
+        </select>
+        <button type="submit">Set Language</button>
+    </form>
+
+    <!-- Video Feed -->
+    <div id="video-container">
+        <img src="{{ url_for('video') }}" width="640" height="480" />
+        <div id="prediction"></div> <!-- Subtitle for prediction -->
+    </div>
+
+    <script>
+        // JavaScript to handle the language selection and display translations
+        document.getElementById('language-select').addEventListener('change', function() {
+            const selectedLang = this.value;
+            fetch('/set_language/' + selectedLang)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Language updated to:', data.language);
+                });
+        });
+    </script>
+</body>
+</html>
