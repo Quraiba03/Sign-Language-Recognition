@@ -1,0 +1,21 @@
+0 Are you ready?
+1 Excuse me
+2 Exercise
+3 Fine
+4 Finish
+5 Good
+6 Hello
+7 Help
+8 How are you
+9 I Love You
+10 Me
+11 morning
+12 No
+13 See you later
+14 Sorry
+15 Stop
+16 Thank you
+17 Where
+18 wrong
+19 Yes
+20 you
