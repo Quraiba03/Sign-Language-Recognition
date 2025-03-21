@@ -1,0 +1,59 @@
+body {
+    font-family: 'Algerian', sans-serif; /* Heading font */
+    background: linear-gradient(to right, #ffecd2, #fcb69f); /* Soft gradient background */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff; /* Light background for content */
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow for aesthetic */
+}
+
+h1 {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Add a subtle shadow to the text */
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 16 / 9; /* Maintain proper video aspect ratio */
+    overflow: hidden;
+    border-radius: 15px;
+    border: 3px solid #ddd;
+    background: #fff;
+    margin: 20px 0;
+}
+
+#videoFeed {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+.subtitles {
+    margin-top: 15px;
+    font-size: 1.5rem;
+    color: #444;
+    font-style: italic;
+}
